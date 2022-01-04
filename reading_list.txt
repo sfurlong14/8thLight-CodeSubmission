@@ -1,0 +1,1 @@
+{"1": ["GitHub For Dummies", ["Sarah Guthals", "Phil Haack"], "John Wiley & Sons"], "2": ["Invent Your Own Computer Games with Python, 4E", ["Al Sweigart"], "No Starch Press"], "3": ["Finding Freedom", ["Omid Scobie", "Carolyn Durand"], "HarperCollins"]}

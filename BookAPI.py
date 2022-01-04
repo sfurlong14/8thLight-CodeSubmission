@@ -1,12 +1,13 @@
 import requests
+import json
 
 search_dict = {}
 reading_list = {}
 
 def pull_api(title_keyword):
   url = 'https://www.googleapis.com/books/v1/volumes?q='
-  API_key = '&key=AIzaSyAjH0QzWJvcyokNRhFaDUko2x5BAWt8lzE'
-  response = requests.get(url + title_keyword + API_key)
+
+  response = requests.get(url + title_keyword)
   results = response.json()
   return (results)
 
@@ -41,15 +42,22 @@ def save_to_reading_list(title_keyword, index_pos):
 def view_reading_list():
   return reading_list
 
+def save_reading_list(reading_list):
+  with open('reading_list.txt', 'w') as convert_file:
+     convert_file.write(json.dumps(reading_list))
+
 def run():
   
   while True:
-    print(f"""       Welcome to my book list Application
+    print(f"""       Create A Reading List
     ____________________________________________________
-          press 1: view searches for the title
-          press 2: add a title to reading List
-          Press 3: view Reading List
-          Press 4: To exit app
+
+
+          press 1: ONLY BROWSE
+          press 2: BROWSE and SAVE TO READING LIST
+          Press 3: VIEW READING LIST
+          Press 4: EXIT
+
     ____________________________________________________
     """)
     menu = input("select an option Please complete search before saving:")
@@ -58,11 +66,13 @@ def run():
       print(get_search_books(keyword_search))
     elif menu == '2':
       keyword_search = input("What title are you looking for:")
+      print(get_search_books(keyword_search))
       index_pos = input("what number book did you want to read?")
       save_to_reading_list(keyword_search, index_pos)
     elif menu == '3':
       print(view_reading_list())
     elif menu == '4':
+      save_reading_list(reading_list)
       quit()
 
 start = run()
